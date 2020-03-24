@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.uwo.model.item.states.ItemState;
+import ca.uwo.model.item.states.ItemStateFactory;
 import ca.uwo.utils.ItemResult;
 import ca.uwo.utils.ResponseCode;
 import ca.uwo.viewer.Messenger;
@@ -42,6 +43,7 @@ public class Item {
 		this.availableQuantity = quantity;
 		this.price = price;
 		this.viewers = new ArrayList<Viewer>();
+		this.state = new ItemStateFactory().create(quantity);
 		
 		// Adding viewers thus implementing part of the Observer design pattern
 		this.viewers.add(StockManager.getInstance());
@@ -96,8 +98,6 @@ public class Item {
 	 * @return execution result of the deplete action.
 	 */
 	public ItemResult deplete(int quantity) {
-		// Deplete the item with quantity and return the execution result of
-		// deplete action.
 		return state.deplete(this, quantity);
 	}
 
@@ -109,15 +109,17 @@ public class Item {
 	 * @return execution result of the replenish action.
 	 */
 	public ItemResult replenish(int quantity) {
-		// Replenish the item with quantity and return the execution result of
-		// replenish action.
-		return state.replenish(this, quantity);
+	    return state.replenish(this, quantity);
 	}
 	
-	public void updateState() {
-		// use item factory method create and set state attribute
+	public void notifyViewers() {
+	    for (Viewer viewer : viewers) {
+		viewer.inform(this);
+	    }
 	}
 	
-	
+	public void setState(ItemState state) {
+	    this.state = state;
+	}
 
 }

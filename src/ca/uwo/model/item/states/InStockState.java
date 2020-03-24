@@ -11,15 +11,14 @@ public class InStockState implements ItemState {
 		ItemResult itemResult;
 		int availableQuantity = item.getAvailableQuantity();
 		if (availableQuantity < quantity) {
-			itemResult = new ItemResult("OUT OF STOCK", ResponseCode.Not_Completed);
+		    itemResult = new ItemResult("OUT OF STOCK", ResponseCode.Not_Completed);
 		} else {
-			availableQuantity -= quantity;
-			itemResult = new ItemResult("AVAILABLE", ResponseCode.Completed);
+		    availableQuantity -= quantity;
+		    itemResult = new ItemResult("AVAILABLE", ResponseCode.Completed);
 		}
-		
 		item.setAvailableQuantity(availableQuantity);
-		item.updateState(); // made in i2 will go out of stock if = 0, low stock if < 10, stay in stock if > 10
-		//item.notifyViewers(); // made in i3
+		item.setState(new ItemStateFactory().create(quantity)); // made in i2 will go out of stock if = 0, low stock if < 10, stay in stock if > 10
+		item.notifyViewers(); // made in i3
 		return itemResult;
 	}
 
@@ -29,8 +28,7 @@ public class InStockState implements ItemState {
 		availableQuantity += quantity;
 		item.setAvailableQuantity(availableQuantity);
 		ItemResult itemResult = new ItemResult("RESTOCKED", ResponseCode.Completed);
-		item.updateState();
-		
+		item.setState(new ItemStateFactory().create(quantity));
 		return itemResult;
 	}
 
