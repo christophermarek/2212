@@ -18,7 +18,7 @@ public class LowStockState implements ItemState{
 		}
 		
 		item.setAvailableQuantity(availableQuantity);
-		item.setState(new ItemStateFactory().create(quantity)); // made in i2 will go out of stock if = 0, low stock if < 10, stay in stock if > 10
+		item.setState(new ItemStateFactory().create(availableQuantity)); // made in i2 will go out of stock if = 0, low stock if < 10, stay in stock if > 10
 		item.notifyViewers(); // made in i3
 		return itemResult;
 	}
@@ -29,8 +29,7 @@ public class LowStockState implements ItemState{
 		availableQuantity += quantity;
 		item.setAvailableQuantity(availableQuantity);
 		ItemResult itemResult = new ItemResult("RESTOCKED", ResponseCode.Completed);
-		item.setState(new ItemStateFactory().create(quantity));
-		
+		item.setState(new ItemStateFactory().create(availableQuantity));
 		return itemResult;
 	}
 

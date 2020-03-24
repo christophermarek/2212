@@ -10,7 +10,7 @@ public class OutOfStockState implements ItemState {
 	public ItemResult deplete(Item item, int quantity) {
 		ItemResult itemResult;
 		itemResult = new ItemResult("OUT OF STOCK", ResponseCode.Not_Completed);
-		item.setState(new ItemStateFactory().create(quantity));
+		item.setState(new ItemStateFactory().create(item.getAvailableQuantity()));
 		item.notifyViewers();
 		return itemResult;
 	}
@@ -21,8 +21,7 @@ public class OutOfStockState implements ItemState {
 		availableQuantity += quantity;
 		item.setAvailableQuantity(availableQuantity);
 		ItemResult itemResult = new ItemResult("RESTOCKED", ResponseCode.Completed);
-		item.setState(new ItemStateFactory().create(quantity));
-		item.notifyViewers();
+		item.setState(new ItemStateFactory().create(availableQuantity));
 		return itemResult;
 	}
 
