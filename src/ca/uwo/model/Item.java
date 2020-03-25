@@ -42,8 +42,13 @@ public class Item {
 		this.name = name;
 		this.availableQuantity = quantity;
 		this.price = price;
+<<<<<<< HEAD
 		this.viewers = new ArrayList<Viewer>();
 		this.state = new ItemStateFactory().create(quantity);
+=======
+		this.viewers = new ArrayList<>();
+		this.state = new ItemStateFactory().create(this.availableQuantity);
+>>>>>>> finalCode
 		
 		// Adding viewers thus implementing part of the Observer design pattern
 		this.viewers.add(StockManager.getInstance());
