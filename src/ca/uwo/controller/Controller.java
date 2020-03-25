@@ -1,14 +1,10 @@
 package ca.uwo.controller;
 
-<<<<<<< HEAD
-=======
 import ca.uwo.frontend.Facade;
->>>>>>> finalCode
 import ca.uwo.utils.Invoice;
 import ca.uwo.utils.Order;
 
 /**
-<<<<<<< HEAD
  * @author kkontog, ktsiouni, mgrigori
  * This class implements key underlying operations of the warehouse system. 
  */
