@@ -32,7 +32,7 @@ public class LowQuantityProxy extends Proxy {
 
     @Override
     public void placeOrder(Map<String, Integer> orderDetails, Buyer buyer) {
-	Facade facade = new Facade();
+	Facade facade = Facade.getInstance();
 	int counter = 0;
 	for (int i : orderDetails.values()) {
 	    counter = counter + i;
@@ -48,6 +48,8 @@ public class LowQuantityProxy extends Proxy {
 
     @Override
     public void restock(Map<String, Integer> restockDetails, Supplier supplier) {
+	Facade facade = Facade.getInstance();
+	facade.restock(restockDetails, supplier);
     }
 
 }

@@ -19,8 +19,6 @@ public class WelcomeProxy extends Proxy {
 	 * constructor for WelcomeProxy class.
 	 */
 	protected Proxy next = new SupplierProxy();
-	public WelcomeProxy() {
-	}
 
 	/* (non-Javadoc)
 	 * @see ca.uwo.frontend.interfaces.FacadeCommands#placeOrder(java.util.Map, ca.uwo.client.Buyer)

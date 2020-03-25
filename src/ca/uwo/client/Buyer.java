@@ -35,7 +35,6 @@ public class Buyer extends Client {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("My name is :" + this.userName + " and I'm buying : ");

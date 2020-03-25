@@ -31,13 +31,14 @@ public class HighQuantityProxy extends Proxy {
 
     @Override
     public void placeOrder(Map<String, Integer> orderDetails, Buyer buyer) {
-	Facade facade = new Facade();
+	Facade facade = Facade.getInstance();
 	authenticate(buyer);
 	facade.placeOrder(orderDetails, buyer);
     }
 
     @Override
     public void restock(Map<String, Integer> restockDetails, Supplier supplier) {
+	Facade facade = Facade.getInstance();
+	facade.restock(restockDetails, supplier);
     }
-
 }

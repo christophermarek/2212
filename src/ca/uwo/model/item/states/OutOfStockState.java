@@ -9,7 +9,6 @@ public class OutOfStockState implements ItemState {
 	@Override
 	public ItemResult deplete(Item item, int quantity) {
 		ItemResult itemResult = new ItemResult("OUT OF STOCK", ResponseCode.Not_Completed);
-		item.notifyViewers();
 		return itemResult;
 	}
 

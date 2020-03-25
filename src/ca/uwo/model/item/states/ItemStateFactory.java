@@ -2,7 +2,7 @@ package ca.uwo.model.item.states;
 
 public class ItemStateFactory {
     
-    public ItemState create(int q) {
+    public static ItemState create(int q) {
 	if (q == 0)
 	    return new OutOfStockState();
 	else if (q > 0 && q < 10)
