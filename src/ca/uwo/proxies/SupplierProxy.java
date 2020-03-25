@@ -11,15 +11,13 @@ public class SupplierProxy extends Proxy {
 
 	@Override
 	public void placeOrder(Map<String, Integer> orderDetails, Buyer buyer) {
-		// TODO Auto-generated method stub
 		next.placeOrder(orderDetails, buyer);
 		
 	}
 
 	@Override
 	public void restock(Map<String, Integer> restockDetails, Supplier supplier) {
-		Facade facade = new Facade();
-		facade.restock(restockDetails, supplier);
+		new Facade().restock(restockDetails, supplier);
 	}
 
 }
