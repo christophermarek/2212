@@ -6,20 +6,20 @@ import ca.uwo.utils.ResponseCode;
 
 public class OutOfStockState implements ItemState {
 
-	@Override
-	public ItemResult deplete(Item item, int quantity) {
-		ItemResult itemResult = new ItemResult("OUT OF STOCK", ResponseCode.Not_Completed);
-		return itemResult;
-	}
+    @Override
+    public ItemResult deplete(Item item, int quantity) {
+	ItemResult itemResult = new ItemResult("OUT OF STOCK", ResponseCode.Not_Completed);
+	return itemResult;
+    }
 
-	@Override
-	public ItemResult replenish(Item item, int quantity) {
-		int availableQuantity = item.getAvailableQuantity() + quantity;
-		item.setAvailableQuantity(availableQuantity);
-		ItemResult itemResult = new ItemResult("RESTOCKED", ResponseCode.Completed);
-		item.setState(new ItemStateFactory().create(availableQuantity));
-		item.notifyViewers();
-		return itemResult;
-	}
+    @Override
+    public ItemResult replenish(Item item, int quantity) {
+	int availableQuantity = item.getAvailableQuantity() + quantity;
+	item.setAvailableQuantity(availableQuantity);
+	ItemResult itemResult = new ItemResult("RESTOCKED", ResponseCode.Completed);
+	item.setState(new ItemStateFactory().create(availableQuantity));
+	item.notifyViewers();
+	return itemResult;
+    }
 
 }
